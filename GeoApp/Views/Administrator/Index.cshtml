@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+
+        <!-- Kreisas panelis -->
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h4>Kartes administrācija</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label">Objekta nosaukums</label>
+                        <input type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Kategorija</label>
+                        <select class="form-select">
+                            <option>Dabas objekts</option>
+                            <option>Apskates objekts</option>
+                            <option>Atpūtas vieta</option>
+                            <option>Vēsturisks objekts</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Apraksts</label>
+                        <textarea class="form-control"
+                                  rows="5"
+                                  placeholder="Apraksts..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Attēls:</label>
+                        <input class="form-control">
+                        <button class="btn-group mt-2 mb-2">Izvēlēties...</button>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            <img src="/placeholder/empty_image.png"
+                                 class="img-fluid"
+                                 style="max-height:300px;"
+                                 alt="Placeholder">
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary">
+                            Add Point
+                        </button>
+
+                        <button class="btn btn-success">
+                            Draw Trail
+                        </button>
+
+                        <button class="btn btn-warning">
+                            Edit Selected
+                        </button>
+
+                        <button class="btn btn-danger">
+                            Delete Selected
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Panel -->
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+                    Interactive Map
+                </div>
+
+                <div class="card-body p-0">
+
+                    <div id="map"
+                         style="height:80vh; width:100%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var map = L.map('map').setView([56.487350, 23.372917], 14);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        var marker = L.marker([56.487350, 23.372917]).addTo(map);
+        marker.bindPopup("<b>Latvijas Valsts Meži dabas parks Tērvetē</b><br>Tērvetes Informācijas centrs.").openPopup();
+    </script>
+}
